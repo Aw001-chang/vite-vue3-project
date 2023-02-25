@@ -7,6 +7,7 @@ const path = require('path')
 
 export default defineConfig({
   plugins: [vue()],
+  base:'/vite-vue3-project/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

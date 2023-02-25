@@ -1,0 +1,1 @@
+import{A as _}from"./About.4912cd00.js";import{_ as e,o,h as t}from"./index.3fb06026.js";const s={__name:"AboutView",setup(a){return(c,r)=>(o(),t(_))}},u=e(s,[["__scopeId","data-v-08037895"]]);export{u as default};

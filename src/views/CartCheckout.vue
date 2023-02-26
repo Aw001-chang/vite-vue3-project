@@ -91,14 +91,14 @@ onMounted(getOrder);
       class="col-lg-12 col-sm-10 col-12 border-bottom pb-3">
       <div class="d-sm-flex justify-content-start align-items-end mb-sm-3 mb-5">
         <div class="h4 mb-sm-0 text-orange-800">訂單編號</div>
-        <span class="text-blue-600 ms-sm-2">複製以保存您的訂單編號，便於查找訂單狀態</span>
+        <span class="text-danger ms-sm-2">複製以保存您的訂單編號，便於查找訂單狀態</span>
       </div>
       <div class="d-sm-flex justify-content-between align-items-center">
-        <div class="h5 m-sm-0 mb-5 fw-bold text-wrap text-break text-danger">{{ orderListId }}</div>
+        <div class="h5 m-sm-0 mb-5 fw-bold text-wrap text-break text-primary">{{ orderListId }}</div>
         <button
           @click="copyOrderId(orderListId)"
           type="button"
-          class="btn btn-warning">複製訂單編號
+          class="btn btn-primary">複製訂單編號
         </button>
       </div>
     </div>
@@ -199,6 +199,8 @@ onMounted(getOrder);
 </template>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/thems.scss';
+
 .step {
   border-bottom: 5px solid rgb(162, 162, 162);
 }

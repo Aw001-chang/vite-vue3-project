@@ -19,6 +19,7 @@
 </template>
 
 <style lang="scss" scoped>
+
 .card {
   cursor: pointer;
   position: relative;

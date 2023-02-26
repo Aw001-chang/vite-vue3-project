@@ -30,6 +30,8 @@
 </template>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/thems.scss';
+
 .step {
   border-bottom: 5px solid $blue-100;
 }

@@ -170,6 +170,8 @@ const route = useRoute();
 </template>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/thems.scss';
+
 .collapse{
   .navbar-nav{
     .active{

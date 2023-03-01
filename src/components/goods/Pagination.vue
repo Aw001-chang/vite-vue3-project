@@ -51,10 +51,16 @@ const updatePage = (page) => {
 <style lang="scss" scoped>
 nav{
   display: inline-block;
-  .active{
-    background-color: $toffee !important;
-    border-color:$toffee !important;
-    color:#ffffff !important;
+  .pagination{
+    .page-item{
+      .page-link.active{
+        background-color: var(--bs-toffee);
+        border-color:var(--bs-toffee);
+        color:#ffffff !important;
+      }
+    }
   }
 }
+
+
 </style>

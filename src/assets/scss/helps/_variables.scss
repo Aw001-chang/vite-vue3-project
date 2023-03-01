@@ -352,6 +352,7 @@ $toffee:        $toffee  !default;
 $primary:       $blue !default;
 $secondary:     $gray-600 !default;
 $success:       $green !default;
+$teal:          $teal-900 !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
@@ -366,6 +367,7 @@ $theme-colors: (
   "primary":    $primary,
   "secondary":  $secondary,
   "success":    $success,
+  "teal":       $teal,
   "info":       $info,
   "warning":    $warning,
   "danger":     $danger,

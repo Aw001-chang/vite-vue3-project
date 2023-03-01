@@ -9,7 +9,7 @@ import SectionTitle from '../components/sectionTitle.vue';
         <SectionTitle>
           <template #sectionTitle>最新商品</template>
         </SectionTitle>
-        <div class="row carousel">
+        <div class="row">
           <slot name="slotGoodCard"></slot>
         </div>
       </div>

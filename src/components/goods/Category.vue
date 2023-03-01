@@ -31,6 +31,8 @@ onMounted(defaultSelected);
 </template>
 
 <style lang="scss" scoped>
+@import '@/assets/scss/thems.scss';
+
 .btn{
   border:1px solid $orange-100;
   color: $orange-700;

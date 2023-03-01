@@ -1,13 +1,17 @@
+<script setup>
+await new Promise((res) => setTimeout(res, 1000));
+</script>
+
 <template>
   <div class="card border-0 mb-5">
     <div class="card-img">
       <slot name="goodImage"></slot>
     </div>
-    <div class="card-body px-0">
+    <div class="card-body px-0 text-orange-900">
       <h5 class="card-title text-2-line text-2-line-height fw-normal">
         <slot name="goodTitle"></slot>
       </h5>
-      <p class="card-text lh-base">
+      <p class="card-text">
         <slot name="goodPrice"></slot>
       </p>
       <div class="btns d-flex w-100">

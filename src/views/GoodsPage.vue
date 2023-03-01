@@ -46,44 +46,15 @@ const filterGoodsData = computed(()=>{
   </SectionTitle>
 
   <section class="container-sm">
+    <!-- <AnimateCard /> -->
+
     <!-- 全部 has padination-->
     <div class="row" v-if="isActive === null">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-12" v-for="item in goods" :key="item.id">
+        <div
+          v-for="item in goods"
+          :key="item.id"
+          class="col-lg-3 col-md-4 col-sm-6 col-12">
           <Suspense>
-              <GoodCard>
-                <template #goodImage>
-                  <img @click="getGoodId(item.id)"
-                    :src="item.imageUrl"
-                    class="card-img-top"
-                    alt="">
-                </template>
-                <template #goodTitle>{{ item.title}}</template>
-                <template #goodPrice>NT$&nbsp;{{ $filter.currency(item.price) }}</template>
-                <template #myCollect>
-                  <a @click="addMyCollection(item, item.id)"
-                    href="#"
-                    class="btn me-2"
-                    :class="collectID.indexOf(item.id) > -1 ? 'btn-toffee' : 'btn-outline-toffee'">
-                    <i class="bi bi-bookmark"></i>
-                  </a>
-                </template>
-                <template #goodToCart>
-                  <button type="button"
-                    @click="addToCart(item.id, 1)"
-                    class="btn btn-outline-toffee flex-fill">加入購物車</button>
-                </template>
-              </GoodCard>
-            <template #fallback>
-              <AnimateCard />
-            </template>
-          </Suspense>
-        </div>
-        <Pagination :pages="pagination" @emit-pages="getGoods"/>
-    </div>
-    <!-- 花束、盆花、課程 -->
-    <div class="row" v-if="isActive !== null">
-      <div class="col-lg-3 col-md-4 col-sm-6 col-12" v-for="item in filterGoodsData" :key="item.id">
-        <Suspense>
             <GoodCard>
               <template #goodImage>
                 <img @click="getGoodId(item.id)"
@@ -91,7 +62,7 @@ const filterGoodsData = computed(()=>{
                   class="card-img-top"
                   alt="">
               </template>
-              <template #goodTitle>{{ item.title}}</template>
+              <template #goodTitle>{{ item.title }}</template>
               <template #goodPrice>NT$&nbsp;{{ $filter.currency(item.price) }}</template>
               <template #myCollect>
                 <a @click="addMyCollection(item, item.id)"
@@ -107,6 +78,43 @@ const filterGoodsData = computed(()=>{
                   class="btn btn-outline-toffee flex-fill">加入購物車</button>
               </template>
             </GoodCard>
+            <template #fallback>
+              <AnimateCard />
+            </template>
+          </Suspense>
+        </div>
+        <Pagination :pages="pagination" @emit-pages="getGoods"/>
+    </div>
+    <!-- 花束、盆花、課程 -->
+    <div class="row" v-if="isActive !== null">
+      <div
+        v-for="item in filterGoodsData"
+        :key="item.id"
+        class="col-lg-3 col-md-4 col-sm-6 col-12">
+        <Suspense>
+          <GoodCard>
+            <template #goodImage>
+              <img @click="getGoodId(item.id)"
+                :src="item.imageUrl"
+                class="card-img-top"
+                alt="">
+            </template>
+            <template #goodTitle>{{ item.title}}</template>
+            <template #goodPrice>NT$&nbsp;{{ $filter.currency(item.price) }}</template>
+            <template #myCollect>
+              <a @click="addMyCollection(item, item.id)"
+                href="#"
+                class="btn me-2"
+                :class="collectID.indexOf(item.id) > -1 ? 'btn-toffee' : 'btn-outline-toffee'">
+                <i class="bi bi-bookmark"></i>
+              </a>
+            </template>
+            <template #goodToCart>
+              <button type="button"
+                @click="addToCart(item.id, 1)"
+                class="btn btn-outline-toffee flex-fill">加入購物車</button>
+            </template>
+          </GoodCard>
           <template #fallback>
             <AnimateCard />
           </template>

@@ -3,7 +3,7 @@ import AnimatedPlaceholder from './AnimatedPlaceholder.vue';
 </script>
 
 <template>
-  <div class="card">
+  <div class="card mb-4">
     <div class="card-img">
       <AnimatedPlaceholder height="200px" width="100%" />
     </div>
@@ -11,7 +11,7 @@ import AnimatedPlaceholder from './AnimatedPlaceholder.vue';
       <h5 class="card-title text-2-line text-2-line-height">
         <AnimatedPlaceholder height="18px" width="70%" border-radius="8px"/>
       </h5>
-      <p class="card-text lh-base">
+      <p class="card-text">
         <AnimatedPlaceholder height="12px" width="40%" border-radius="8px"/>
       </p>
       <div class="btns d-flex w-100">

@@ -3,10 +3,18 @@ import axios from 'axios';
 import { storeToRefs } from 'pinia';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+
 import { useCart } from '../stores/cart';
+import { useCollection } from '../stores/collection';
 
 import SectionTitle from '../components/sectionTitle.vue';
 
+// 加入收藏
+const dataCollection = useCollection();
+const { collectID } = storeToRefs(dataCollection);
+const { addMyCollection } = dataCollection;
+
+// 取得商品id
 const route = useRoute();
 const id = route.params.id;
 
@@ -92,7 +100,18 @@ onMounted(getGoodsInfo);
             </div>
             <div class="row">
               <div class="col-md-6 col-sm-12 col-6 mb-3 mb-md-0">
-                <button type="button" class="btn btn-outline-success w-100">
+                <button
+                    v-if="collectID.indexOf(good.id) > -1"
+                    @click="addMyCollection(good, good.id)"
+                    type="button"
+                    class="btn btn-success w-100">
+                    <i class="bi bi-bookmark me-1"></i>取消收藏
+                  </button>
+                <button
+                  v-else
+                  @click="addMyCollection(good, good.id)"
+                  type="button"
+                  class="btn btn-outline-success w-100">
                   <i class="bi bi-bookmark me-1"></i>加入收藏
                 </button>
               </div>

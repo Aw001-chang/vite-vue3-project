@@ -5,6 +5,8 @@ import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { useCart } from '../stores/cart';
 
+import SectionTitle from '../components/sectionTitle.vue';
+
 const route = useRoute();
 const id = route.params.id;
 
@@ -36,9 +38,10 @@ onMounted(getGoodsInfo);
   <div class="container-xxl">
     <div class="row justify-content-center">
       <div class="col-xl-8 col-lg-10 col-12">
-        <div class="text-center seperation-top seperation-bottom">
-          <div class="h3 pb-2">{{ good.category }}</div>
-        </div>
+        <SectionTitle>
+          <template #sectionTitle>{{ good.category }}</template>
+        </SectionTitle>
+        
         <div class="row">
           <div class="col-sm-7 col-12">
             <div class="mb-3">
@@ -62,11 +65,10 @@ onMounted(getGoodsInfo);
               </li> -->
             </ul>
           </div>
-          <div class="col-sm-5 col-12 mt-5 mt-sm-0">
+          <div class="col-sm-5 col-12 mt-5 mt-sm-0 text-orange-900">
             <div class="h4 mb-4">{{ good.title }}</div>
             <div class="mb-4">
-              <div class="text-decoration-line-through text-muted">NT$&nbsp;{{ good.origin_price }}</div>
-              <div class="h5">NT$&nbsp;{{ good.price }}</div>
+              <div class="h5 text-red-600">NT$&nbsp;{{ $filter.currency(good.price) }}</div>
             </div>
             <div class="mb-5">
               <div>花材:</div>
@@ -75,7 +77,7 @@ onMounted(getGoodsInfo);
             <div class="form-floating mb-4">
               <select
                 v-model.number="good.qty"
-                class="form-select"
+                class="form-select text-orange-900"
                 id="floatingSelect"
                 aria-label="Floating label select example">
                 <option :value="numVal" disabled>請選擇數量</option>
@@ -90,7 +92,7 @@ onMounted(getGoodsInfo);
             </div>
             <div class="row">
               <div class="col-md-6 col-sm-12 col-6 mb-3 mb-md-0">
-                <button type="button" class="btn btn-outline-primary w-100">
+                <button type="button" class="btn btn-outline-success w-100">
                   <i class="bi bi-bookmark me-1"></i>加入收藏
                 </button>
               </div>
@@ -98,7 +100,7 @@ onMounted(getGoodsInfo);
                 <button
                   @click="addToCart(good.id, good.qty)"
                   type="button"
-                  class="btn btn-primary w-100">
+                  class="btn btn-success w-100">
                   <i class="bi bi-cart me-1"></i>加入購物車
                 </button>
               </div>

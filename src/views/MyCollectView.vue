@@ -1,4 +1,5 @@
 <script setup>
+import { ref, watchEffect } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import { useCollection } from '../stores/collection';
@@ -17,8 +18,12 @@ const { getGoodId } = AllDataGoodsAll;
 
 const dataCollection = useCollection();
 const { addMyCollection } = dataCollection;
-const { collectionData, collectID, collectionLength } = storeToRefs(dataCollection);
+const { collectionData, collectID } = storeToRefs(dataCollection);
 
+const collectionLength = ref();
+watchEffect(async () => {
+  collectionLength.value = collectionData.value.length
+});
 </script>
 
 <template>

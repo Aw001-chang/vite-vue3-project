@@ -9,7 +9,6 @@ export const useCollection = defineStore('collection', () => {
   const { pushMessage } = dataToastMessage;
   let msg;
   
-  const collectionLength = ref();
   const collectionData = ref(
     useLocalStorage('collection',[])
   );
@@ -26,9 +25,6 @@ export const useCollection = defineStore('collection', () => {
     { deep: true }
   );
 
-  watchEffect(async()=>{
-    collectionLength.value = collectionData.value.length
-  });
 
   const addMyCollection = (item, id) => {
     const match = collectionData.value.findIndex((itemVal) => item.id === itemVal.id);
@@ -63,7 +59,6 @@ export const useCollection = defineStore('collection', () => {
     collectionData,
     addMyCollection,
     collectID,
-    collectionLength
   }
 },
 {

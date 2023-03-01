@@ -15,6 +15,8 @@ const dataToastMessage = useToastMessage();
 const { pushMessage } = dataToastMessage;
 let msg;
 // // ----------------- 取得單筆訂單 ------------------------------
+const isLoading = ref(false);
+
 const order = ref({
   user:{}
 });
@@ -34,7 +36,9 @@ const getOrder = async () => {
 const payOrder = async () => {
   try {
     const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/pay/${orderId}`;
+    isLoading.value = true;
     const res = await axios.post(api);
+    isLoading.value = false;
     if(res.data.success){
       getOrder()
       scrollToTop()
@@ -68,6 +72,8 @@ onMounted(getOrder);
 </script>
 
 <template>
+  <Loading :active="isLoading"></Loading>
+
   <TheStep>
     <template #step-pay>
       <div :class="{ active: isActive}"

@@ -115,7 +115,9 @@ export const useCart = defineStore('cart', () => {
     try{
       const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/order`;
       const order = orderForm;
+      isLoading.value = true;
       const res = await axios.post(api, {data: order.value});
+      isLoading.value = false;
       const orderId = res.data.orderId;
       router.push(`cart/checkout/${orderId}`);
     }catch(error) {

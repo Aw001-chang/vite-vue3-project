@@ -1,5 +1,7 @@
 <script setup>
+import { onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
+import AOS from 'aos'
 
 import { useGoodsAll } from '../stores/goods';
 import { useCart } from '../stores/cart';
@@ -11,6 +13,7 @@ import GoodCard from '../components/GoodCard.vue';
 import About from '../components/homepage/About.vue';
 import Feature from '../components/homepage/Feature.vue';
 import AnimateCard from '../components/AnimateCard.vue';
+import Banner from '../components/homepage/Banner.vue';
 
 const dataCollection = useCollection();
 const { collectID } = storeToRefs(dataCollection);
@@ -22,10 +25,15 @@ const { addToCart } = dataCart;
 const AllDataGoodsAll = useGoodsAll();
 const { goodsAll } = storeToRefs(AllDataGoodsAll);
 const { getGoodId } = AllDataGoodsAll;
+
+onMounted(()=>{
+  AOS.init();
+})
 </script>
 
 <template>
-  <main>
+  <main class="home">
+    <Banner/>
     <NewIn>
       <template #slotGoodCard>
         <div
@@ -33,7 +41,7 @@ const { getGoodId } = AllDataGoodsAll;
           :key="item.id"
           class="col-md-3 col-sm-6">
           <Suspense>
-            <good-card>
+            <GoodCard>
               <template #goodImage>
                 <img @click="getGoodId(item.id)"
                   :src="item.imageUrl"
@@ -55,7 +63,7 @@ const { getGoodId } = AllDataGoodsAll;
                   @click="addToCart(item.id, 1)"
                   class="btn btn-outline-toffee flex-fill">加入購物車</button>
               </template>
-            </good-card>
+            </GoodCard>
             <template #fallback>
               <AnimateCard />
             </template>

@@ -1,11 +1,12 @@
 <script setup>
+import { RouterView } from 'vue-router';
 import NavBar from '../components/NavBar.vue';
 import Footer from '../components/Footer.vue';
 import ToastContainer from '../components/ToastContainer.vue';
 </script>
 
 <template>
-  <div class="userboard">
+  <div class="userboard position-relative">
     <ToastContainer />
     <NavBar />
     <RouterView />
@@ -19,7 +20,6 @@ import ToastContainer from '../components/ToastContainer.vue';
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
 }
 .h3 {
   position: relative;

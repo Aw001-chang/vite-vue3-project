@@ -15,6 +15,8 @@ import { currency, date } from './composable/filter';
 import Loading from 'vue3-loading-overlay';
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 
+import 'aos/dist/aos.css';
+
 const pinia = createPinia();
 const app = createApp(App);
 

@@ -1,4 +1,3 @@
-
 <template>
   <div class="contact-us container-fluid">
     <div class="text-center seperation-top seperation-bottom">
@@ -90,7 +89,7 @@ ul{
     position: absolute;
     left: 0;
     top: 0;
-    background-color: #FFEEDF;
+    background-color: #f5f1ed;
     z-index: 1;
   }
   .container-lg{

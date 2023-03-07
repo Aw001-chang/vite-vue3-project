@@ -27,7 +27,7 @@ watchEffect(async () => {
 </script>
 
 <template>
-  <div class="container-lg">
+  <div class="container-sm">
     <div class="row justify-content-center">
       <div class="col-lg-10">
         <SectionTitle>
@@ -43,8 +43,8 @@ watchEffect(async () => {
       <!-- 以下 收藏清單 -->
       <div class="col-12 seperation-bottom" v-else>
         <div class="row">
-          <div class="col-12 seperation-bottom">顯示所有&nbsp;{{ collectionLength }}個結果</div>
-          <div  class="col-md-3 col-sm-6" v-for="item in collectionData" :key="item.id">
+          <div class="col-12 seperation-bottom text-sm-start text-center">顯示所有&nbsp;{{ collectionLength }}個結果</div>
+          <div  class="col-lg-3 col-md-4 col-sm-6" v-for="item in collectionData" :key="item.id">
             <Suspense>
                 <GoodCard>
                   <template #goodImage>

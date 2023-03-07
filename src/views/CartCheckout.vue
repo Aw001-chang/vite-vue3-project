@@ -21,6 +21,7 @@ const order = ref({
   user:{}
 });
 const orderListId = ref('');
+const isPay = ref(false);
 
 const getOrder = async () => {
   try {
@@ -28,8 +29,9 @@ const getOrder = async () => {
     const res = await axios.get(api);
     order.value = res.data.order;
     orderListId.value = res.data.order.id;
+    isPay.value = res.data.order.is_paid;
   } catch (error) {
-
+    console.log(error.response)
   }
 }
 // ----------------- 結帳 ------------------------------
@@ -44,7 +46,7 @@ const payOrder = async () => {
       scrollToTop()
     }
   } catch (error) {
-    console.log(error)
+    console.log(error.response)
   }
 };
 // ----------------- 是否完成結帳，Step樣式狀態 ------------------------------
@@ -73,7 +75,6 @@ onMounted(getOrder);
 
 <template>
   <Loading :active="isLoading"></Loading>
-
   <TheStep>
     <template #step-pay>
       <div :class="{ active: isActive}"
@@ -92,15 +93,13 @@ onMounted(getOrder);
     </template>
   </TheStep>
   <div class="row justify-content-center seperation-top seperation-bottom px-2 px-sm-0">
-    <div
-      v-if="order.is_paid !== false"
-      class="col-lg-12 col-sm-10 col-12 border-bottom pb-3">
-      <div class="d-sm-flex justify-content-start align-items-end mb-sm-3 mb-5">
-        <div class="h4 mb-sm-0 text-orange-800">訂單編號</div>
-        <span class="text-danger ms-sm-2">複製以保存您的訂單編號，便於查找訂單狀態</span>
+    <div v-if="isPay === true" class="col-lg-12 col-12 border-bottom pb-3">
+      <div class="d-flex flex-md-row flex-column justify-content-start align-items-md-end align-items-center mb-md-3 mb-5">
+        <div class="h4 mb-md-0 text-orange-800">訂單編號</div>
+        <span class="text-danger ms-md-2 ms-0">複製以保存您的訂單編號，便於查找訂單狀態</span>
       </div>
-      <div class="d-sm-flex justify-content-between align-items-center">
-        <div class="h5 m-sm-0 mb-5 fw-bold text-wrap text-break text-primary">{{ orderListId }}</div>
+      <div class="d-flex flex-md-row flex-column justify-content-between align-items-center">
+        <div class="h5 m-md-0 mb-5 fw-bold text-wrap text-break text-primary">{{ orderListId }}</div>
         <button
           @click="copyOrderId(orderListId)"
           type="button"

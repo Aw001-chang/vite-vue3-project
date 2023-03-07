@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref, watch, computed, watchEffect } from "vue";
+import { ref, watch, computed } from "vue";
 import { useLocalStorage } from '@vueuse/core';
 import { useToastMessage } from './toastMessage';
 

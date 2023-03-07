@@ -21,7 +21,7 @@ const { getOrder } = dataCart;
       </div>
       <div class="col-12 text-center seperation-top seperation-bottom">
         <div class="row justify-content-center">
-          <div class="col-sm-4 col-12">
+          <div class="col-lg-4 col-md-6 col-sm-8 col-12">
             <div class="input-group mb-3">
               <input
                 v-model.trim="inputOrderID"
@@ -51,8 +51,7 @@ const { getOrder } = dataCart;
           </div>
           <div class="col-12 mb-5">
             <div class="fs-4 fw-bold mb-4 text-orange-800">訂購商品:</div>
-            <CartItem v-for="item in orderList.products"
-              :key="item">
+            <CartItem v-for="item in orderList.products" :key="item">
               <template #orderImage>
                 <img :src="item.product.imageUrl"
                   class="d-block"
@@ -68,11 +67,13 @@ const { getOrder } = dataCart;
                 <div>x&nbsp;{{ item.qty }}</div>
               </template>
             </CartItem>
-            <div class="fs-5 fw-bold text-end mt-3 text-red-600">總金額:&nbsp;{{ $filter.currency(orderList.total) }}</div>
+            <div class="fs-5 fw-bold text-end mt-3 text-red-600">
+              總金額:&nbsp;{{ $filter.currency(orderList.total) }}
+            </div>
           </div>
           <div class="col-12">
             <div class="row">
-            <div class="fs-4 fw-bold mb-4 text-orange-800">收件人資訊:</div>
+              <div class="fs-4 fw-bold mb-4 text-orange-800">收件人資訊:</div>
               <div class="border-bottom p-3">
                 <div class="mb-2 fw-bold">收件人姓名:</div>
                 <div>{{ orderUser.name }}</div>
@@ -97,7 +98,6 @@ const { getOrder } = dataCart;
           </div>
         </div>
       </div>
-      
     </div>
   </div>
 </template>

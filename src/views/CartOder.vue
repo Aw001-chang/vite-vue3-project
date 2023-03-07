@@ -13,9 +13,8 @@ const { clearStorage } = dataGoodsAll;
 const { WatchedData } = storeToRefs(dataGoodsAll);
 
 const dataCart = useCart();
-const { deleteCart, updateCart } = dataCart;
-const { cart, isLoading } = storeToRefs(dataCart);
-
+const { deleteCart, updateCart, useCoupon } = dataCart;
+const { cart, isLoading, couponCode, couponSuccess } = storeToRefs(dataCart);
 </script>
 
 <template>
@@ -66,17 +65,26 @@ const { cart, isLoading } = storeToRefs(dataCart);
         </template>
       </CartItem>
       <div class="input-group mt-5">
-        <input type="text"
+        <input
+          v-model.trim="couponCode"
+          :disabled="couponSuccess === true"
+          type="text"
           class="form-control"
           placeholder="輸入折扣碼"
           aria-label="Recipient's username"
           aria-describedby="button-addon2">
-        <button class="btn btn-outline-secondary"
+        <button
+          @click.prevent="useCoupon(couponCode)"
+          :disabled="couponSuccess === true"
+          class="btn btn-success"
           type="button"
-          id="button-addon2">套用折價券</button>
+          id="button-addon2">套用折價券
+        </button>
       </div>
       <div class="h4 mt-5 text-end">
-        <div class="mb-2">總計:</div>
+        <div class="mb-2">
+          總計:
+        </div>
         <div class="fw-bold text-danger">NT$&nbsp;{{ cart.final_total }}</div>
       </div>
     </div>
@@ -88,10 +96,12 @@ const { cart, isLoading } = storeToRefs(dataCart);
     v-if="WatchedData.length !== 0"
     class="row seperation-top seperation-bottom border-top">
     <div class="col-12">
-      <div class="d-flex align-items-center justify-content-between">
-        <div class="h4 mb-0">瀏覽紀錄</div>
+      <div class="d-flex flex-md-row flex-column align-items-center justify-content-start justify-content-xl-start justify-content-md-center mb-5">
+        <div class="h4 mb-0 text-orange-800">瀏覽紀錄</div>
         <button type="button" @click="clearStorage"
-          class="btn btn-outline-primary">清除歷史紀錄</button>
+          class="btn btn-outline-toffee btn-sm ms-md-3 ms-0 mt-3 mt-md-0">
+          <i class="bi bi-trash"></i>
+        </button>
       </div>
       <Watched />
     </div>

@@ -28,7 +28,7 @@ const route = useRoute();
           <div class="d-flex justify-content-md-end me-4 me-md-0">
             <div class="dropdown">
               <a href="#"
-                class="me-sm-4 me-0 position-relative cart-btn"
+                class="me-sm-3 me-0 position-relative cart-btn"
                 role="button"
                 id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
                 <i class="bi bi-cart text-brown"></i>
@@ -55,7 +55,6 @@ const route = useRoute();
                 <!-- 以下為 購物車已已選購商品 -->
                 <div v-else>
                   <div class="dropdown-item p-0">
-                    <!--  -->
                     <div class="card border-0">
                       <div class="card-body overflow-scroll p-0">
                         <CartItem v-for="item in cart.carts" :key="item.index">

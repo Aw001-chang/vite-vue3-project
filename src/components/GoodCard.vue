@@ -23,7 +23,6 @@ await new Promise((res) => setTimeout(res, 1000));
 </template>
 
 <style lang="scss" scoped>
-
 .card {
   cursor: pointer;
   position: relative;
@@ -33,7 +32,6 @@ await new Promise((res) => setTimeout(res, 1000));
   &:hover {
     transform: translate(0, -5%);
     transition: 1s;
-
     .btns {
       bottom: 0;
       transition: 1s;
@@ -47,7 +45,6 @@ await new Promise((res) => setTimeout(res, 1000));
       position: absolute;
       z-index: 1;
       opacity: .8;
-
       i {
         padding: 4px;
       }
@@ -70,7 +67,6 @@ await new Promise((res) => setTimeout(res, 1000));
     left: 0;
   }
 }
-
 @media(max-width:767.98px) {
   .card {
     .btns {

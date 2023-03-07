@@ -17,3 +17,11 @@ import SectionTitle from '../components/sectionTitle.vue';
   </div>
 </template>
 
+<style lang="scss" scoped>
+@media(max-width:767.98px){
+  .container-lg{
+    max-width: 540px;
+  }
+}
+</style>
+

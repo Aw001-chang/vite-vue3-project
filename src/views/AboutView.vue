@@ -1,16 +1,10 @@
 <script setup>
 import About from '../components/homepage/About.vue';
 </script>
+
 <template>
-  <About/>
+  <div class="position-relative">
+    <About/>
+  </div>
 </template>
 
-<style lang="scss" scoped>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>

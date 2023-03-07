@@ -80,6 +80,13 @@ import ToastContainer from '../components/ToastContainer.vue';
 .good-title{
   letter-spacing: 0.075rem;
 }
+.swiper-scrollbar{
+  border-radius: 0;
+  .swiper-scrollbar-drag{
+    border-radius: 0;
+    background-color: var(--bs-brown);
+  }
+}
 @media (max-width:280px) {
   .h3 {
     &:before {

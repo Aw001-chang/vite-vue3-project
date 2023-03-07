@@ -45,6 +45,7 @@ await new Promise((res) => setTimeout(res, 1000));
       position: absolute;
       z-index: 1;
       opacity: .8;
+      
       i {
         padding: 4px;
       }
@@ -57,6 +58,7 @@ await new Promise((res) => setTimeout(res, 1000));
       left: 50%;
       transform: translate(-50%, -50%);
     }
+    
   }
   .card-body{
     letter-spacing: 0.04rem;

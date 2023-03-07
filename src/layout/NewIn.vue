@@ -9,7 +9,7 @@ import SectionTitle from '../components/sectionTitle.vue';
         <SectionTitle>
           <template #sectionTitle>最新商品</template>
         </SectionTitle>
-        <div class="row">
+        <div class="row justify-content-center seperation-bottom">
           <slot name="slotGoodCard"></slot>
         </div>
       </div>
@@ -21,6 +21,7 @@ import SectionTitle from '../components/sectionTitle.vue';
 @media(max-width:767.98px){
   .container-lg{
     max-width: 540px;
+    position: static;
   }
 }
 </style>

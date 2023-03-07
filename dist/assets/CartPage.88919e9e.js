@@ -1,1 +1,0 @@
-import{S as o}from"./sectionTitle.da3ec87d.js";import{f as a,o as s,c,b as e,w as n,d as r}from"./index.47c49ec5.js";const i={class:"container-xl"},d={__name:"CartPage",setup(_){return(l,m)=>{const t=a("RouterView");return s(),c("div",i,[e(o,null,{sectionTitle:n(()=>[r("\u8CFC\u7269\u8ECA")]),_:1}),e(t)])}}};export{d as default};

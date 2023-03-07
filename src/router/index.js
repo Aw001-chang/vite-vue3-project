@@ -56,7 +56,11 @@ const router = createRouter({
             }
           ]
         }
-      ]
+      ],
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
   ],
   scrollBehavior(to, from, savePosition){

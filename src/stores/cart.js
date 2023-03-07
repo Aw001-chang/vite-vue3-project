@@ -40,11 +40,7 @@ export const useCart = defineStore('cart', () => {
 
       }
     } catch (error) {
-
-      msg = {
-        style: 'danger',
-        content: '未成功加入購物車'
-      };
+      console.log(error.response);
 
     } finally {
       pushMessage(msg);
@@ -64,7 +60,7 @@ export const useCart = defineStore('cart', () => {
       isLoading.value = false;
       getCart();
     }catch(error) {
-
+      console.log(error.response);
     }
   };
   // ----------------- 取得購物車資訊 ------------------------------
@@ -77,7 +73,7 @@ export const useCart = defineStore('cart', () => {
       cart.value = res.data.data;
       cartsLength.value = res.data.data.carts.length;
     }catch(error) {
-
+      console.log(error.response);
     }
   }
   // ----------------- 刪除購物車品項 ------------------------------
@@ -91,10 +87,8 @@ export const useCart = defineStore('cart', () => {
         content: '成功刪除品項'
       };
     }catch(error) {
-      msg = {
-        style: 'danger',
-        content: '未成功刪除品項'
-      };
+      console.log(error.response);
+
     }finally {
       pushMessage(msg);
     }
@@ -146,25 +140,61 @@ export const useCart = defineStore('cart', () => {
           style: 'danger',
           content: '請輸入正確的訂單編號'
         };
-        pushMessage(msg);
+        
       }
     } catch(error) {
-      if(res.data.success === false){
-        console.log('erroe')
-      };
-      isLoading.value = false;
-      msg = {
-        style: 'danger',
-        content: '請輸入訂單編號'
-      };
+      console.log(error.response)
 
     } finally{
-
+      pushMessage(msg);
       inputOrderID.value = '';
       scrollToTop();
 
     }
   }
+// ----------------- 套用優惠券 ------------------------------
+const couponCode = ref('');
+const coupon = ref({
+  code: couponCode
+})
+const couponSuccess = ref();
+const couponMessage = ref('')
+
+const useCoupon = async() => {
+  try{
+    if (couponCode.value === ''){
+      msg = {
+        style: 'danger',
+        content: '未輸入優惠碼'
+      };
+    }else{
+      isLoading.value = true;
+      const api = `${import.meta.env.VITE_APP_API}/api/${import.meta.env.VITE_APP_PATH}/coupon`;
+      const res = await axios.post(api, { data: coupon.value });
+      couponSuccess.value = res.data.success;
+      couponMessage.value = res.data.message;
+
+      if (couponSuccess.value === false){
+        msg = {
+          style: 'danger',
+          content: '請輸入正確的優惠碼！'
+        };
+        couponCode.value = '';
+      }else{
+        msg = {
+          style: 'teal-700',
+          content: couponMessage.value
+        };
+      }
+      isLoading.value = false;
+    }
+  }catch(error){
+    console.log(error.response)
+    
+  }finally{
+    pushMessage(msg);
+  }
+}
 
 
 
@@ -183,6 +213,9 @@ export const useCart = defineStore('cart', () => {
     orderList,
     inputOrderID,
     orderUser,
-    isNull
+    isNull,
+    couponCode,
+    couponSuccess,
+    useCoupon
   };
 })

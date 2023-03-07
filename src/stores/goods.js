@@ -23,7 +23,7 @@ export const useGoodsAll = defineStore('goodsAll', () => {
       goodsAll.value = res.data.products
       goodsAll.value.reverse()
     }catch(error) {
-
+      console.log(error.response)
     }
   };
 
@@ -40,7 +40,7 @@ export const useGoodsAll = defineStore('goodsAll', () => {
       goods.value = res.data.products;
       pagination.value = res.data.pagination;
     }catch(error) {
-      console.log(error);
+      console.log(error.response);
     }
     scrollToTop();
   }

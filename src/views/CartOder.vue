@@ -15,6 +15,7 @@ const { WatchedData } = storeToRefs(dataGoodsAll);
 const dataCart = useCart();
 const { deleteCart, updateCart, useCoupon } = dataCart;
 const { cart, isLoading, couponCode, couponSuccess } = storeToRefs(dataCart);
+
 </script>
 
 <template>

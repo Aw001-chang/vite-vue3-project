@@ -185,6 +185,7 @@ const useCoupon = async() => {
           style: 'teal-700',
           content: couponMessage.value
         };
+        getCart();
       }
       isLoading.value = false;
     }

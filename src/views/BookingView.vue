@@ -31,7 +31,7 @@ const { getOrder } = dataCart;
                 aria-label="Recipient's username"
                 aria-describedby="button-addon2">
               <button
-                @click="getOrder(inputOrderID)"
+                @click.prevent="getOrder(inputOrderID)"
                 class="btn btn-outline-primary"
                 type="button">查詢訂單
               </button>

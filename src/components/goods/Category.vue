@@ -14,7 +14,7 @@ onMounted(defaultSelected);
     <div class="d-flex justify-content-center align-items-center">
       <button
         :class="isDefault"
-        @click="defaultSelected"
+        @click.prevent="defaultSelected"
         type="button"
         class="btn me-2">{{ defaultBtn }}
       </button>
@@ -22,7 +22,7 @@ onMounted(defaultSelected);
         v-for="btn in categoryBtn"
         :key="btn"
         :class="{ active: btn === isActive  }"
-        @click="isSelected(btn)"
+        @click.prevent="isSelected(btn)"
         type="button"
         class="btn me-2">{{ btn }}
       </button>

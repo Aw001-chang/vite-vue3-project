@@ -79,7 +79,7 @@ onMounted(()=>{
             <Suspense>
               <GoodCard>
                 <template #goodImage>
-                  <img @click="getGoodId(item.id)"
+                  <img @click.prevent="getGoodId(item.id)"
                     :src="item.imageUrl"
                     class="card-img-top rounded-0"
                     alt="">
@@ -87,7 +87,7 @@ onMounted(()=>{
                 <template #goodTitle>{{ item.title }}</template>
                 <template #goodPrice>NT$&nbsp;{{ $filter.currency(item.price) }}</template>
                 <template #myCollect>
-                  <a @click="addMyCollection(item, item.id)"
+                  <a @click.prevent="addMyCollection(item, item.id)"
                     href="#"
                     class="btn me-2"
                     :class="collectID.indexOf(item.id) > -1 ? 'btn-toffee' : 'btn-outline-toffee'">
@@ -96,57 +96,18 @@ onMounted(()=>{
                 </template>
                 <template #goodToCart>
                   <button type="button"
-                    @click="addToCart(item.id, 1)"
+                    @click.prevent="addToCart(item.id, 1)"
                     class="btn btn-outline-toffee flex-fill">加入購物車</button>
                 </template>
               </GoodCard>
               <template #fallback>
                 <AnimateCard />
               </template>
-              
             </Suspense>
           </swiper-slide>
         </swiper>
         </div>
       </template>
-      
-      <!-- +++++++++++++++++ -->
-      <!-- <template #slotGoodCard>
-        <div
-          v-for="item in goodsAll.slice(0, 4)"
-          :key="item.id"
-          class="col-md-3 col-sm-6">
-          <Suspense>
-            <GoodCard>
-              <template #goodImage>
-                <img @click="getGoodId(item.id)"
-                  :src="item.imageUrl"
-                  class="card-img-top"
-                  alt="">
-              </template>
-              <template #goodTitle>{{ item.title }}</template>
-              <template #goodPrice>NT$&nbsp;{{ $filter.currency(item.price) }}</template>
-              <template #myCollect>
-                <a @click="addMyCollection(item, item.id)"
-                  href="#"
-                  class="btn me-2"
-                  :class="collectID.indexOf(item.id) > -1 ? 'btn-toffee' : 'btn-outline-toffee'">
-                  <i class="bi bi-bookmark"></i>
-                </a>
-              </template>
-              <template #goodToCart>
-                <button type="button"
-                  @click="addToCart(item.id, 1)"
-                  class="btn btn-outline-toffee flex-fill">加入購物車</button>
-              </template>
-            </GoodCard>
-            <template #fallback>
-              <AnimateCard />
-            </template>
-            
-          </Suspense>
-        </div>
-      </template> -->
     </NewIn>
     <About/>
     <Feature/>

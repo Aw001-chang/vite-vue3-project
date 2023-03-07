@@ -48,7 +48,7 @@ watchEffect(async () => {
             <Suspense>
                 <GoodCard>
                   <template #goodImage>
-                    <img @click="getGoodId(item.id)"
+                    <img @click.prevent="getGoodId(item.id)"
                       :src="item.imageUrl"
                       class="card-img-top"
                       alt="">
@@ -56,7 +56,7 @@ watchEffect(async () => {
                   <template #goodTitle>{{ item.title }}</template>
                   <template #goodPrice>NT$&nbsp;{{ $filter.currency(item.price) }}</template>
                   <template #myCollect>
-                    <a @click="addMyCollection(item, item.id)"
+                    <a @click.prevent="addMyCollection(item, item.id)"
                       href="#"
                       class="btn me-2"
                       :class="collectID.indexOf(item.id) > -1 ? 'btn-toffee' : 'btn-outline-toffee'">
@@ -65,7 +65,7 @@ watchEffect(async () => {
                   </template>
                   <template #goodToCart>
                     <button type="button"
-                      @click="addToCart(item.id, 1)"
+                      @click.prevent="addToCart(item.id, 1)"
                       class="btn btn-outline-toffee flex-fill">加入購物車</button>
                   </template>
                 </GoodCard>

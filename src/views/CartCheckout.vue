@@ -101,7 +101,7 @@ onMounted(getOrder);
       <div class="d-flex flex-md-row flex-column justify-content-between align-items-center">
         <div class="h5 m-md-0 mb-5 fw-bold text-wrap text-break text-primary">{{ orderListId }}</div>
         <button
-          @click="copyOrderId(orderListId)"
+          @click.prevent="copyOrderId(orderListId)"
           type="button"
           class="btn btn-primary">複製訂單編號
         </button>

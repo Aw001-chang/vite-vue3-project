@@ -89,14 +89,14 @@ onMounted(getGoodsInfo);
             <div class="col-md-6 col-12 mb-3 mb-md-0">
               <button
                 v-if="collectID.indexOf(good.id) > -1"
-                @click="addMyCollection(good, good.id)"
+                @click.prevent="addMyCollection(good, good.id)"
                 type="button"
                 class="btn btn-outline-toffee w-100 py-3">
                 <i class="bi bi-bookmark-fill me-1"></i>取消收藏
               </button>
               <button
                 v-else
-                @click="addMyCollection(good, good.id)"
+                @click.prevent="addMyCollection(good, good.id)"
                 type="button"
                 class="btn btn-outline-toffee w-100 py-3">
                 <i class="bi bi-bookmark me-1"></i>加入收藏
@@ -104,7 +104,7 @@ onMounted(getGoodsInfo);
             </div>
             <div class="col-md-6 col-12">
               <button
-                @click="addToCart(good.id, good.qty)"
+                @click.prevent="addToCart(good.id, good.qty)"
                 type="button"
                 class="btn btn-toffee w-100 py-3">
                 <i class="bi bi-cart me-1"></i>加入購物車

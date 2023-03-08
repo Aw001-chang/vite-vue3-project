@@ -8,7 +8,8 @@ import router from './router';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-import '../node_modules/bootstrap-icons/font/bootstrap-icons.scss';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 import { currency, date } from './composable/filter';
 

@@ -79,7 +79,9 @@ const { copy } = useClipboard({ copyDiscount });
       top:0;
     }
     div{
-      bottom: 230px;
+      div{
+        bottom: 230px;
+      }
     }
     .discount{
       bottom: 0;

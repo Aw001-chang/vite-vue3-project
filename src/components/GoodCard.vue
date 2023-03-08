@@ -71,6 +71,9 @@ await new Promise((res) => setTimeout(res, 1000));
 }
 @media(max-width:767.98px) {
   .card {
+    &:hover{
+      transform: none;
+    }
     .btns {
       position: unset;
     }

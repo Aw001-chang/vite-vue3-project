@@ -40,7 +40,7 @@ const route = useRoute();
               </a>
               <div class="dropdown-menu shadow-lg border-toffee py-0"
                 aria-labelledby="dropdownMenuClickableInside">
-                <div class="border-bottom bg-toffee rounded-top py-2 px-3 text-white fw-normal fs-5 text-center cart-title">購物車</div>
+                <div class="border-bottom bg-toffee rounded-1 py-2 px-3 text-white fw-normal fs-5 text-center cart-title">購物車</div>
                 <!-- 以下為 購物車尚未選購商品 -->
                 <div v-if="cartsLength === 0">
                   <div class="text-center mt-4 d-flex justify-content-center flex-column">
@@ -94,7 +94,7 @@ const route = useRoute();
                           <template #orderDelete>
                             <button @click.prevent="deleteCart(item)"
                               type="button"
-                              class="btn btn-outline-danger btn-sm">
+                              class="btn btn-outline-danger btn-sm delete-btn">
                               <i class="bi bi-trash"></i>
                             </button>
                           </template>
@@ -204,6 +204,8 @@ const route = useRoute();
   transform: .3s ease-out;
   .cart-title{
     letter-spacing: 0.0875rem;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
   }
   .overflow-scroll {
     max-height: 300px;
@@ -230,10 +232,42 @@ const route = useRoute();
   }
 }
 
-@media(min-width:545px) {
+@media(min-width:576px) {
   .dropdown-menu {
     left: auto !important;
     right: 0 !important;
   }
 }
+@media screen and (max-width: 575.98px) and (min-width:375px) {
+  .dropdown-menu {
+    right: -80px !important;
+  }
+}
+@media screen and (max-width: 374.98px) and (min-width:280px) {
+  .dropdown-menu {
+    width: 256px;
+    left: -160px !important;
+    right: auto !important;
+  }
+  .dropdown-item {
+    .items {
+      display: block !important;
+      position: relative;
+      img{
+        margin: auto;
+      }
+      .good-title{
+        text-align: center !important;
+
+      }
+      .delete-btn{
+        position: absolute;
+        top: 8px;
+        right: 16px;
+      }
+      
+    }
+  }
+}
+
 </style>

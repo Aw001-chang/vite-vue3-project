@@ -9,6 +9,7 @@ export default ({mode}) => {
 
   return defineConfig({
     plugins: [vue()],
+    base:"/vite-vue3-project/",
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),

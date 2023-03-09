@@ -111,7 +111,11 @@ const { height } = useWindowSize()
                   </div>
                   <div class="cart-footer border-top position-absolute bottom-0 w-100 bg-white">
                     <router-link to="/goods" v-if="cartsLength === 0">
-                      <button type="button" class="btn btn-toffee rounded-0 fs-5 px-4 h-100 w-100">選購商品</button>
+                      <button
+                        @click="isShow = false"
+                        type="button"
+                        class="btn btn-toffee rounded-0 fs-5 px-4 h-100 w-100">選購商品
+                      </button>
                     </router-link>
                     <div class="d-flex flex-row justify-content-end align-items-stretch" v-else>
                       <div class="total text-end pe-3 py-2">
@@ -119,7 +123,11 @@ const { height } = useWindowSize()
                         <span class="text-danger fw-bold fs-5">NT$&nbsp;{{ $filter.currency(cart.final_total) }}</span>
                       </div>
                       <router-link to="/cart">
-                        <button type="button" class="btn btn-toffee rounded-0 fs-5 px-4 h-100">去買單</button>
+                        <button
+                          @click="isShow = false"
+                          type="button" 
+                          class="btn btn-toffee rounded-0 fs-5 px-4 h-100">去買單
+                        </button>
                       </router-link>
                     </div>
                   </div>

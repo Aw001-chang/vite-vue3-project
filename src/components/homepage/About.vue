@@ -17,7 +17,7 @@ const { height } = useWindowSize()
     <div class="about-deco" data-aos="fade-up" data-aos-duration="2000">
       <div class="container-lg fs-5 text-white fw-light">
         <div class="row justify-content-center">
-          <div class="col-8 text-start">
+          <div class="col-md-8 col-9 text-start">
             <p>
               桂子飄香，是一間專門販售鮮花的精品花店，我們提供高品質的鮮花和專業的客戶服務，為您打造最美好的花卉體驗。
             </p>
@@ -61,8 +61,9 @@ const { height } = useWindowSize()
   }
 }
 
-@media (max-width:575.98px){
+@media screen and (max-width:575.98px){
   .aboutComponent{
+    background-position: top;
     .about-deco{
       .row{
         div{

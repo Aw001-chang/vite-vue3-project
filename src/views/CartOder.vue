@@ -1,6 +1,9 @@
 <script setup>
+import { watchEffect } from 'vue';
 import { storeToRefs } from 'pinia';
 import { useGoodsAll } from '../stores/goods';
+import { useRouter } from 'vue-router';
+
 import { useCart } from '../stores/cart';
 
 import CartItem from '../components/cart/CartItem.vue';
@@ -15,6 +18,13 @@ const { WatchedData } = storeToRefs(dataGoodsAll);
 const dataCart = useCart();
 const { deleteCart, updateCart, useCoupon } = dataCart;
 const { cart, isLoading, couponCode, couponSuccess } = storeToRefs(dataCart);
+
+const router = useRouter()
+watchEffect(()=>{
+  if (cart.value.carts.length < 1) {
+    router.push(`goods`)
+  }
+})
 
 </script>
 

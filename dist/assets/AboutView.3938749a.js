@@ -1,1 +1,0 @@
-import{A as e}from"./About.d3ba1c45.js";import{o,a as t,d as a}from"./index.62f69d0e.js";import"./sectionTitle.4d3eaeb0.js";const r={class:"position-relative"},m={__name:"AboutView",setup(s){return(c,i)=>(o(),t("div",r,[a(e)]))}};export{m as default};

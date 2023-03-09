@@ -3,8 +3,16 @@ import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import 'bootstrap/dist/js/bootstrap.bundle';
-import CartItem from '../components/cart/CartItem.vue';
+import { useWindowSize } from '@vueuse/core';
+
+
 import { useCart } from '../stores/cart';
+import { useGoodsAll } from '../stores/goods';
+
+import CartItem from '../components/cart/CartItem.vue';
+
+const dataGoodsAll = useGoodsAll;
+const { getGoodId } = dataGoodsAll()
 
 const dataCart = useCart();
 const { deleteCart, updateCart } = dataCart;
@@ -12,6 +20,10 @@ const { cart, cartsLength } = storeToRefs(dataCart);
 
 const activeClass = ref('active');
 const route = useRoute();
+
+const isShow = ref(false)
+
+const { height } = useWindowSize()
 </script>
 
 <template>
@@ -26,11 +38,11 @@ const route = useRoute();
         </div>
         <div class="col order-md-2 d-flex justify-content-end align-items-center">
           <div class="d-flex justify-content-md-end me-4 me-md-0">
-            <div class="dropdown">
+            <div>
               <a href="#"
+                @click="isShow = !isShow"
                 class="me-sm-3 me-0 position-relative cart-btn"
-                role="button"
-                id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                >
                 <i class="bi bi-cart text-brown"></i>
                 <span
                   :class="cartsLength > 0 ? 'bg-danger' : 'bg-secondary'"
@@ -38,81 +50,67 @@ const route = useRoute();
                   {{ cartsLength }}
                 </span>
               </a>
-              <div class="dropdown-menu shadow-lg border-toffee py-0"
-                aria-labelledby="dropdownMenuClickableInside">
-                <div class="border-bottom bg-toffee rounded-1 py-2 px-3 text-white fw-normal fs-5 text-center cart-title">購物車</div>
-                <!-- 以下為 購物車尚未選購商品 -->
-                <div v-if="cartsLength === 0">
-                  <div class="text-center mt-4 d-flex justify-content-center flex-column">
-                    <i class="fs-1 bi bi-exclamation-triangle-fill text-black-50"></i>
-                    <span class="text-black-50">尚未選購商品</span>
+              <div class="cart shadow-lg" :class="{show: isShow}">
+                <div class="position-relative" :style="{ height: height + 'px' }">
+                  <div class="cart-header border-bottom d-flex flex-row justify-content-between align-items-center">
+                    <h5 class="mb-0 ps-3 fw-normal text-brown">購物車</h5>
+                    <button type="button" class="btn" @click="isShow = !isShow">
+                      <i class="bi bi-x fs-2 text-brown"></i>
+                    </button>
                   </div>
-                  <div class="text-center mt-4 mb-3 px-3">
-                    <router-link to="/goods"
-                      class="btn btn-outline-toffee w-100 d-block">選購商品</router-link>
+                  <div class="cart-body">
+                    <CartItem v-for="item in cart.carts" :key="item.index">
+                      <template #orderImage>
+                        <a href="#" @click.prevent="getGoodId(item.product.id)">
+                          <img :src="item.product.imageUrl"
+                            class="d-block"
+                            alt="">
+                        </a>
+                      </template>
+                      <template #orderTitle>
+                        {{ item.product.title }}
+                      </template>
+                      <template #orderFinalTotal>
+                        {{ item.product.price }}
+                      </template>
+                      <template #orderQtyReduce>
+                        <button @click.prevent="updateCart(item, item.qty--)"
+                          :class="{ 'disabled': item.qty <= 1 }"
+                          type="button"
+                          class="btn btn-outline-secondary btn-sm">
+                          <i class="bi bi-dash-lg"></i>
+                        </button>
+                      </template>
+                      <template #orderQty>
+                        <input v-model.number="item.qty"
+                          @change="updateCart(item)"
+                          type="number"
+                          class="text-center form-control rounded-0 border-start-0 border-end-0 border-secondary">
+                      </template>
+                      <template #orderQtyPlus>
+                        <button @click.prevent="updateCart(item, item.qty++)"
+                          :class="{ 'disabled': item.qty >= 10 }"
+                          type="button"
+                        class="btn btn-outline-secondary btn-sm">
+                        <i class="bi bi-plus-lg"></i>
+                        </button>
+                      </template>
+                      <template #orderDelete>
+                        <a href="#" @click.prevent="deleteCart(item)">
+                          <i class="bi bi-trash text-danger fs-6 fw-lighter"></i>
+                        </a>
+                      </template>
+                    </CartItem>
                   </div>
-                </div>
-                <!-- 以下為 購物車已已選購商品 -->
-                <div v-else>
-                  <div class="dropdown-item p-0">
-                    <div class="card border-0">
-                      <div class="card-body overflow-scroll p-0">
-                        <CartItem v-for="item in cart.carts" :key="item.index">
-                          <template #orderImage>
-                            <img :src="item.product.imageUrl"
-                              class="d-block"
-                              alt="">
-                          </template>
-                          <template #orderTitle>
-                            {{ item.product.title }}
-                          </template>
-                          <template #orderFinalTotal>
-                            {{ item.product.price }}
-                          </template>
-                          <template #orderQtyReduce>
-                            <button @click.prevent="updateCart(item, item.qty--)"
-                              :class="{'disabled': item.qty <= 1}"
-                              type="button"
-                              class="btn btn-outline-secondary btn-sm">
-                              <i class="bi bi-dash-lg"></i>
-                            </button>
-                          </template>
-                          <template #orderQty>
-                            <input v-model.number="item.qty"
-                              @change="updateCart(item)"
-                              type="number"
-                              class="text-center form-control rounded-0 border-start-0 border-end-0 border-secondary">
-                          </template>
-                          <template #orderQtyPlus>
-                            <button @click.prevent="updateCart(item, item.qty++)"
-                              :class="{'disabled': item.qty >= 10}"
-                              type="button"
-                              class="btn btn-outline-secondary btn-sm">
-                              <i class="bi bi-plus-lg"></i>
-                            </button>
-                          </template>
-                          <template #orderDelete>
-                            <button @click.prevent="deleteCart(item)"
-                              type="button"
-                              class="btn btn-outline-danger btn-sm delete-btn">
-                              <i class="bi bi-trash"></i>
-                            </button>
-                          </template>
-                        </CartItem>
+                  <div class="cart-footer border-top position-absolute bottom-0 w-100 bg-white">
+                    <div class="d-flex flex-row justify-content-end align-items-stretch">
+                      <div class="total text-end pe-3 py-2">
+                        <span class="d-block fw-light">總金額:</span>
+                        <span class="text-danger fw-bold fs-5">NT$&nbsp;{{ $filter.currency(cart.final_total) }}</span>
                       </div>
-                      <div class="card-footer">
-                        <div class="text-center mt-2">
-                          <div class="fs-5 fw-bolder text-danger">
-                            總計:&nbsp;&nbsp;NT$&nbsp;{{ $filter.currency(cart.final_total) }}
-                          </div>
-                        </div>
-                        <div class="text-center mt-4">
-                          <router-link to="/cart"
-                            class="btn btn-toffee text-white w-100 d-block mb-3">前往結帳</router-link>
-                          <router-link to="/goods"
-                            class="btn btn-outline-toffee w-100 d-block">繼續選購</router-link>
-                        </div>
-                      </div>
+                      <router-link to="/cart">
+                        <button type="button" class="btn btn-toffee rounded-0 fs-5 px-4 h-100">去買單</button>
+                      </router-link>
                     </div>
                   </div>
                 </div>
@@ -169,105 +167,35 @@ const route = useRoute();
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/thems.scss';
-.collapse{
-  .navbar-nav{
-    .active{
-      color: $orange-900;
-    }
-  }
-}
 .navbar-brand {
   img {
     height: 30px;
   }
 }
 .cart{
-  ::hover{
-    transform: none !important;
-  }
+  position: fixed;
+  top: 0;
+  right: -280px;
+  background-color: #fff;
+  width: 280px;
+  height: 100vh;
+  z-index: 1000;
+  transition: .5s;
 }
-.cart-btn{
-  span{
-    font-size: 0.75rem;
-    font-weight: normal !important;
-  }
-  .translate-middle{
-    transform:translate(-40%, -40%) !important;
-  }
+.cart.show{
+  right: 0;
+  
 }
-.dropdown-menu {
-  width: 360px;
-  left: auto;
-  right: -65%;
-  top: 49px !important;
-  transform: .3s ease-out;
-  .cart-title{
-    letter-spacing: 0.0875rem;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-  }
-  .overflow-scroll {
-    max-height: 300px;
-    .photo{
-      width: 100px;
-      height: 102px;
-      img{
-        width: 128%;
-      }
+.cart-header{
+  button{
+    &:active{
+      border-color: transparent;
     }
   }
 }
-.dropdown-item {
-  &:hover {
-    background-color: transparent !important;
-  }
-  &:active{
-    color: unset
-  }
-  .items {
-    &:last-child {
-      border-bottom: unset !important;
-    }
-  }
-}
-
-@media(min-width:576px) {
-  .dropdown-menu {
-    left: auto !important;
-    right: 0 !important;
-  }
-}
-@media screen and (max-width: 575.98px) and (min-width:375px) {
-  .dropdown-menu {
-    right: -80px !important;
-  }
-}
-@media screen and (max-width: 374.98px) and (min-width:280px) {
-  .dropdown-menu {
-    width: 256px;
-    left: -160px !important;
-    right: auto !important;
-  }
-  .dropdown-item {
-    .items {
-      display: block !important;
-      position: relative;
-      img{
-        margin: auto;
-      }
-      .good-title{
-        text-align: center !important;
-
-      }
-      .delete-btn{
-        position: absolute;
-        top: 8px;
-        right: 16px;
-      }
-      
-    }
-  }
+.cart-body{
+  overflow: scroll;
+  height: 100%;
 }
 
 </style>

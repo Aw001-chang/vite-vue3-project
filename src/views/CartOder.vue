@@ -9,7 +9,7 @@ import TheStep from '../components/cart/TheStep.vue';
 import Watched from '../components/Watched.vue';
 
 const dataGoodsAll = useGoodsAll();
-const { clearStorage } = dataGoodsAll;
+const { clearStorage, getGoodId } = dataGoodsAll;
 const { WatchedData } = storeToRefs(dataGoodsAll);
 
 const dataCart = useCart();
@@ -27,7 +27,11 @@ const { cart, isLoading, couponCode, couponSuccess } = storeToRefs(dataCart);
       <div class="h4 mb-4 text-center text-md-start text-orange-800">訂購商品</div>
       <CartItem v-for="item in cart.carts" :key="item.index">
         <template #orderImage>
-          <img :src="item.product.imageUrl" class="d-block" alt="">
+          <a href="#" @click.prevent="getGoodId(item.product.id)">
+            <img :src="item.product.imageUrl"
+              class="d-block"
+              alt="">
+          </a>
         </template>
         <template #orderTitle>
           {{ item.product.title }}
@@ -58,11 +62,9 @@ const { cart, isLoading, couponCode, couponSuccess } = storeToRefs(dataCart);
           </button>
         </template>
         <template #orderDelete>
-          <button @click.prevent="deleteCart(item)"
-            type="button"
-            class="btn btn-outline-danger btn-sm">
-            <i class="bi bi-trash"></i>
-          </button>
+          <a href="#" @click.prevent="deleteCart(item)">
+            <i class="bi bi-trash text-danger fs-6 fw-lighter"></i>
+          </a>
         </template>
       </CartItem>
       <div class="input-group mt-5">

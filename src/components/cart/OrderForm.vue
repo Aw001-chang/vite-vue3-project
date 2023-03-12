@@ -1,7 +1,7 @@
 <script setup>
 import { Field, Form, ErrorMessage } from 'vee-validate';
 import { storeToRefs } from 'pinia';
-import { useCart } from '../../stores/cart';
+import { useCart } from '@/stores/cart';
 const dataCart = useCart();
 const { orderForm } = storeToRefs(dataCart);
 const { createOrder } = dataCart;

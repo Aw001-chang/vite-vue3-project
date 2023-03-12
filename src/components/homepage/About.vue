@@ -1,6 +1,6 @@
 <script setup>
 import { useWindowSize } from '@vueuse/core'
-import SectionTitle from '../sectionTitle.vue';
+import SectionTitle from '@/components/sectionTitle.vue';
 
 const { height } = useWindowSize()
 </script>

@@ -2,16 +2,16 @@
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 
-import { useGoodsAll } from '../stores/goods';
-import { useCategorySelect } from '../stores/categorySelect';
-import { useCollection } from '../stores/collection';
-import { useCart } from '../stores/cart';
+import { useGoodsAll } from '@/stores/goods';
+import { useCategorySelect } from '@/stores/categorySelect';
+import { useCollection } from '@/stores/collection';
+import { useCart } from '@/stores/cart';
 
-import Category from '../components/goods/Category.vue';
-import SectionTitle from '../components/sectionTitle.vue';
-import GoodCard from '../components/GoodCard.vue';
-import AnimateCard from '../components/AnimateCard.vue';
-import Pagination from '../components/goods/Pagination.vue';
+import Category from '@/components/goods/Category.vue';
+import SectionTitle from '@/components/sectionTitle.vue';
+import GoodCard from '@/components/GoodCard.vue';
+import AnimateCard from '@/components/AnimateCard.vue';
+import Pagination from '@/components/goods/Pagination.vue';
 
 const dataCollection = useCollection();
 const { collectID } = storeToRefs(dataCollection);

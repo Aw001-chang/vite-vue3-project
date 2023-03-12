@@ -1,7 +1,7 @@
 <script setup>
 import { storeToRefs } from 'pinia';
 import Toasts from './Toasts.vue';
-import { useToastMessage } from '../stores/toastMessage';
+import { useToastMessage } from '@/stores/toastMessage';
 
 const dataToastMessage = useToastMessage();
 const { messages } = storeToRefs(dataToastMessage);

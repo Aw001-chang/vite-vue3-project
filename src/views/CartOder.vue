@@ -1,15 +1,15 @@
 <script setup>
 import { watchEffect } from 'vue';
 import { storeToRefs } from 'pinia';
-import { useGoodsAll } from '../stores/goods';
+import { useGoodsAll } from '@/stores/goods';
 import { useRouter } from 'vue-router';
 
-import { useCart } from '../stores/cart';
+import { useCart } from '@/stores/cart';
 
-import CartItem from '../components/cart/CartItem.vue';
-import OrderForm from '../components/cart/OrderForm.vue';
-import TheStep from '../components/cart/TheStep.vue';
-import Watched from '../components/Watched.vue';
+import CartItem from '@/components/cart/CartItem.vue';
+import OrderForm from '@/components/cart/OrderForm.vue';
+import TheStep from '@/components/cart/TheStep.vue';
+import Watched from '@/components/Watched.vue';
 
 const dataGoodsAll = useGoodsAll();
 const { clearStorage, getGoodId } = dataGoodsAll;

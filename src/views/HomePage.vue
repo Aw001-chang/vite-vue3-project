@@ -3,17 +3,17 @@ import { ref, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import AOS from 'aos';
 
-import { useGoodsAll } from '../stores/goods';
-import { useCart } from '../stores/cart';
-import { useCollection } from '../stores/collection';
+import { useGoodsAll } from '@/stores/goods';
+import { useCart } from '@/stores/cart';
+import { useCollection } from '@/stores/collection';
 
-import NewIn from '../layout/NewIn.vue';
+import NewIn from '@/layout/NewIn.vue';
 
-import GoodCard from '../components/GoodCard.vue';
-import About from '../components/homepage/About.vue';
-import Feature from '../components/homepage/Feature.vue';
-import AnimateCard from '../components/AnimateCard.vue';
-import Banner from '../components/homepage/Banner.vue';
+import GoodCard from '@/components/GoodCard.vue';
+import About from '@/components/homepage/About.vue';
+import Feature from '@/components/homepage/Feature.vue';
+import AnimateCard from '@/components/AnimateCard.vue';
+import Banner from '@/components/homepage/Banner.vue';
 
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import { Navigation, Pagination, Mousewheel, Keyboard, Scrollbar } from 'swiper';

@@ -4,10 +4,10 @@ import { storeToRefs } from 'pinia';
 import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
-import { useCart } from '../stores/cart';
-import { useCollection } from '../stores/collection';
+import { useCart } from '@/stores/cart';
+import { useCollection } from '@/stores/collection';
 
-import SectionTitle from '../components/sectionTitle.vue';
+import SectionTitle from '@/components/sectionTitle.vue';
 
 // 加入收藏
 const dataCollection = useCollection();

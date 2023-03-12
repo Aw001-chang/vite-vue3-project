@@ -2,13 +2,13 @@
 import { ref, watchEffect } from 'vue';
 import { storeToRefs } from 'pinia';
 
-import { useCollection } from '../stores/collection';
-import { useGoodsAll } from '../stores/goods';
-import { useCart } from '../stores/cart';
+import { useCollection } from '@/stores/collection';
+import { useGoodsAll } from '@/stores/goods';
+import { useCart } from '@/stores/cart';
 
-import GoodCard from '../components/GoodCard.vue';
-import AnimateCard from '../components/AnimateCard.vue';
-import SectionTitle from '../components/sectionTitle.vue';
+import GoodCard from '@/components/GoodCard.vue';
+import AnimateCard from '@/components/AnimateCard.vue';
+import SectionTitle from '@/components/sectionTitle.vue';
 
 const dataCart = useCart();
 const { addToCart } = dataCart;

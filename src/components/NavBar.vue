@@ -6,10 +6,10 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 import { useWindowSize } from '@vueuse/core';
 
 
-import { useCart } from '../stores/cart';
-import { useGoodsAll } from '../stores/goods';
+import { useCart } from '@/stores/cart';
+import { useGoodsAll } from '@/stores/goods';
 
-import CartItem from '../components/cart/CartItem.vue';
+import CartItem from '@/components/cart/CartItem.vue';
 
 const dataGoodsAll = useGoodsAll;
 const { getGoodId } = dataGoodsAll()

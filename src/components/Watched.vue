@@ -2,12 +2,12 @@
 import { computed } from 'vue';
 import { storeToRefs } from 'pinia';
 
-import { useGoodsAll } from '../stores/goods';
-import { useCart} from '../stores/cart';
-import { useCollection } from '../stores/collection';
+import { useGoodsAll } from '@/stores/goods';
+import { useCart} from '@/stores/cart';
+import { useCollection } from '@/stores/collection';
 
-import GoodCard from '../components/GoodCard.vue';
-import AnimateCard from '../components/AnimateCard.vue';
+import GoodCard from '@/components/GoodCard.vue';
+import AnimateCard from '@/components/AnimateCard.vue';
 
 const dataGoodsAll = useGoodsAll();
 const { getGoodId } = dataGoodsAll;

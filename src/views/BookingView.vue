@@ -1,8 +1,8 @@
 <script setup>
 import { storeToRefs } from 'pinia';
-import { useCart } from '../stores/cart';
-import CartItem from '../components/cart/CartItem.vue';
-import SectionTitle from '../components/sectionTitle.vue';
+import { useCart } from '@/stores/cart';
+import CartItem from '@/components/cart/CartItem.vue';
+import SectionTitle from '@/components/sectionTitle.vue';
 
 const dataCart = useCart();
 const { orderList, inputOrderID, isLoading, orderUser, isNull } = storeToRefs(dataCart);

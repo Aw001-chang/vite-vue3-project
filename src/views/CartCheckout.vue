@@ -4,9 +4,9 @@ import { ref, onMounted, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
 import { useClipboard } from '@vueuse/core';
 
-import { useToastMessage } from '../stores/toastMessage';
-import { scrollToTop } from '../composable/scrollTop';
-import TheStep from '../components/cart/TheStep.vue';
+import { useToastMessage } from '@/stores/toastMessage';
+import { scrollToTop } from '@/composable/scrollTop';
+import TheStep from '@/components/cart/TheStep.vue';
 
 const route = useRoute();
 const orderId = route.params.orderId;

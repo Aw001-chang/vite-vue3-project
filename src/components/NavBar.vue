@@ -3,8 +3,7 @@ import { storeToRefs } from 'pinia';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import 'bootstrap/dist/js/bootstrap.bundle';
-import { useWindowSize } from '@vueuse/core';
-
+import { useWindowSize, onClickOutside } from '@vueuse/core';
 
 import { useCart } from '@/stores/cart';
 import { useGoodsAll } from '@/stores/goods';
@@ -12,18 +11,33 @@ import { useGoodsAll } from '@/stores/goods';
 import CartItem from '@/components/cart/CartItem.vue';
 
 const dataGoodsAll = useGoodsAll;
-const { getGoodId } = dataGoodsAll()
+const { getGoodId } = dataGoodsAll();
 
 const dataCart = useCart();
 const { deleteCart, updateCart } = dataCart;
 const { cart, cartsLength } = storeToRefs(dataCart);
+const { height } = useWindowSize();
 
 const activeClass = ref('active');
 const route = useRoute();
-
-const isShow = ref(false)
-
-const { height } = useWindowSize()
+// cart OutsideClick
+const isShow = ref(false);
+const cartRef = ref(null);
+onClickOutside(
+  cartRef,
+  (event)=> {
+    isShow.value = false;
+  }
+)
+// menu OutsideClick
+const menuRef = ref(null);
+const isMenuShow = ref(false);
+onClickOutside(
+  menuRef,
+  (event) => {
+    isMenuShow.value = false;
+  }
+)
 </script>
 
 <template>
@@ -50,7 +64,10 @@ const { height } = useWindowSize()
                   {{ cartsLength }}
                 </span>
               </a>
-              <div class="cart shadow-lg" :class="{show: isShow}">
+              <div
+                :class="{ show: isShow }"
+                ref="cartRef"
+                class="cart shadow-lg">
                 <div class="position-relative" :style="{ height: height + 'px' }">
                   <div class="cart-header border-bottom d-flex flex-row justify-content-between align-items-center">
                     <h5 class="mb-0 ps-3 fw-normal text-brown">購物車</h5>
@@ -140,18 +157,15 @@ const { height } = useWindowSize()
           </div>
           <button class="navbar-toggler"
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavAltMarkup"
-            aria-controls="navbarNavAltMarkup"
-            aria-expanded="false"
-            aria-label="Toggle navigation">
+            @click="isMenuShow = !isMenuShow">
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
         <div class="col-md-6 col-12">
-          <div class="collapse navbar-collapse justify-content-center"
+          <div :class="{ show: isMenuShow }" ref="menuRef"
+            class="collapse navbar-collapse justify-content-center"
             id="navbarNavAltMarkup">
-            <div class="navbar-nav pt-5 pt-md-0 text-center text-md-unset">
+            <div class="navbar-nav pt-5 pt-md-0 text-center text-md-unset" @click="isMenuShow = false">
               <router-link
                 :class="[route.name === 'about' ? activeClass : '']"
                 to="/about"

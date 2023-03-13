@@ -85,7 +85,7 @@ onMounted(getOrder);
     </template>
     <template #step-finish>
       <div
-        :class="{ 'active': order.is_paid !== false }"
+        :class="{ 'active': isPay === true }"
         class="col-4 step text-center text-blue-600">
         <span>STEP&nbsp;03</span>
         <div class="h5 mt-2">完成訂單</div>

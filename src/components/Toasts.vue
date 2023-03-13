@@ -20,7 +20,7 @@ onMounted(() => {
   const toastEl = toast.value
   const toastShow = new Toast(toastEl, {
     autohide: true,
-    delay: 3000,
+    delay: 1200,
   });
   toastShow.show();
 })
